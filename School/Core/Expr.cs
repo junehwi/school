@@ -5,10 +5,7 @@ namespace School.Core
     public interface IExprVisitor<R>
     {
         R Visit(Number number);
-        R Visit(Add add);
-        R Visit(Sub sub);
-        R Visit(Mul mul);
-        R Visit(Div div);
+        R Visit(FunApp app);
     }
 
     public abstract class Expr
@@ -36,61 +33,27 @@ namespace School.Core
         }
     }
 
-    public abstract class BinaryOperator : Expr
+    public class FunApp : Expr
     {
-        private readonly Expr right;
-        private readonly Expr left;
+        private readonly string name;
 
-        public Expr Right
+        private readonly Expr[] args;
+
+        public string Name
         {
-            get { return right; }
+            get { return name; }
         }
 
-        public Expr Left
+        public Expr[] Args
         {
-            get { return left; }
+            get { return args; }
         }
-
-        public BinaryOperator(Expr left, Expr right)
+            
+        public FunApp(string name, Expr[] args)
         {
-            this.right = right;
-            this.left = left;
+            this.name = name;
+            this.args = args;
         }
-    }
-
-    public class Add : BinaryOperator
-    {
-        public Add(Expr left, Expr right) : base(left, right) { }
-
-        public override R Accept<R>(IExprVisitor<R> visitor)
-        {
-            return visitor.Visit(this);
-        }
-    }
-
-    public class Sub : BinaryOperator
-    {
-        public Sub(Expr left, Expr right) : base(left, right) { }
-
-        public override R Accept<R>(IExprVisitor<R> visitor)
-        {
-            return visitor.Visit(this);
-        }
-    }
-
-    public class Mul : BinaryOperator
-    {
-        public Mul(Expr left, Expr right) : base(left, right) { }
-
-        public override R Accept<R>(IExprVisitor<R> visitor)
-        {
-            return visitor.Visit(this);
-        }
-    }
-
-    public class Div : BinaryOperator
-    {
-        public Div(Expr left, Expr right) : base(left, right) { }
 
         public override R Accept<R>(IExprVisitor<R> visitor)
         {

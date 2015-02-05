@@ -42,9 +42,6 @@
     <Compile Include="SchoolParser.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Evaluator.cs" />
-    <Compile Include="RPNConverter.cs" />
-    <Compile Include="CSharpCodeGenerator.cs" />
-    <Compile Include="PseudoByteCodeGenerator.cs" />
     <Compile Include="Surface\Expr.cs" />
     <Compile Include="Core\Expr.cs" />
     <Compile Include="Desugarer.cs" />

@@ -1,9 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace School
 {
     public class Evaluator : Core.IExprVisitor<int>
     {
+        private static readonly Dictionary<string, Func<int, int, int>> builtinFunctions = new Dictionary<string, Func<int, int, int>>
+        {
+            { "add", (a, b) => a + b },
+            { "sub", (a, b) => a - b },
+            { "mul", (a, b) => a * b },
+            { "div", (a, b) => a / b }
+        };
+
         public Evaluator() { }
 
         public int Evaluate(Core.Expr expr)
@@ -16,24 +25,14 @@ namespace School
             return number.Value;
         }
 
-        int Core.IExprVisitor<int>.Visit(Core.Add add)
+        int Core.IExprVisitor<int>.Visit(Core.FunApp app)
         {
-            return add.Left.Accept(this) + add.Right.Accept(this);
-        }
+            // FIXME: Currently, we assume that all functions are binary.
+            int arg0 = app.Args[0].Accept(this);
+            int arg1 = app.Args[1].Accept(this);
 
-        int Core.IExprVisitor<int>.Visit(Core.Sub sub)
-        {
-            return sub.Left.Accept(this) - sub.Right.Accept(this);
-        }
-
-        int Core.IExprVisitor<int>.Visit(Core.Mul mul)
-        {
-            return mul.Left.Accept(this) * mul.Right.Accept(this);
-        }
-
-        int Core.IExprVisitor<int>.Visit(Core.Div div)
-        {
-            return div.Left.Accept(this) / div.Right.Accept(this);
+            Func<int, int, int> func = builtinFunctions[app.Name];
+            return func(arg0, arg1);
         }
     }
 }

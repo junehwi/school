@@ -20,28 +20,28 @@ namespace School
         {
             Core.Expr left = add.Left.Accept(this);
             Core.Expr right = add.Right.Accept(this);
-            return new Core.Add(left, right);
+            return new Core.FunApp("add", new Core.Expr[] { left, right });
         }
 
         Core.Expr Surface.IExprVisitor<Core.Expr>.Visit(Surface.Sub sub)
         {
             Core.Expr left = sub.Left.Accept(this);
             Core.Expr right = sub.Right.Accept(this);
-            return new Core.Sub(left, right);
+            return new Core.FunApp("sub", new Core.Expr[] { left, right });
         }
 
         Core.Expr Surface.IExprVisitor<Core.Expr>.Visit(Surface.Mul mul)
         {
             Core.Expr left = mul.Left.Accept(this);
             Core.Expr right = mul.Right.Accept(this);
-            return new Core.Mul(left, right);
+            return new Core.FunApp("mul", new Core.Expr[] { left, right });
         }
 
         Core.Expr Surface.IExprVisitor<Core.Expr>.Visit(Surface.Div div)
         {
             Core.Expr left = div.Left.Accept(this);
             Core.Expr right = div.Right.Accept(this);
-            return new Core.Div(left, right);
+            return new Core.FunApp("div", new Core.Expr[] { left, right });
         }
     }
 }

@@ -23,15 +23,6 @@ namespace School
 
             var evaluator = new Evaluator();
             Console.Write("Result:\n{0}\n\n", evaluator.Evaluate(coreExpr));
-
-            var converter = new RPNConverter();
-            Console.Write("RPN:\n{0}\n\n", converter.Convert(coreExpr));
-
-            var bytecodeGenerator = new PseudoByteCodeGenerator();
-            Console.Write("Pseudo Bytecode:\n{0}\n\n", bytecodeGenerator.Compile(coreExpr));
-
-            var csharpCodeGenerator = new CSharpCodeGenerator();
-            Console.Write("C# code:\n{0}\n\n", csharpCodeGenerator.Compile(coreExpr));
         }
     }
 }
