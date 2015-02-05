@@ -18,17 +18,20 @@ namespace School
             printer.Print(expr);
             Console.Write("\n\n");
 
+            var desugarer = new Desugarer();
+            Core.Expr coreExpr = desugarer.Desugar(expr);
+
             var evaluator = new Evaluator();
-            Console.Write("Result:\n{0}\n\n", evaluator.Evaluate(expr));
+            Console.Write("Result:\n{0}\n\n", evaluator.Evaluate(coreExpr));
 
             var converter = new RPNConverter();
-            Console.Write("RPN:\n{0}\n\n", converter.Convert(expr));
+            Console.Write("RPN:\n{0}\n\n", converter.Convert(coreExpr));
 
             var bytecodeGenerator = new PseudoByteCodeGenerator();
-            Console.Write("Pseudo Bytecode:\n{0}\n\n", bytecodeGenerator.Compile(expr));
+            Console.Write("Pseudo Bytecode:\n{0}\n\n", bytecodeGenerator.Compile(coreExpr));
 
             var csharpCodeGenerator = new CSharpCodeGenerator();
-            Console.Write("C# code:\n{0}\n\n", csharpCodeGenerator.Compile(expr));
+            Console.Write("C# code:\n{0}\n\n", csharpCodeGenerator.Compile(coreExpr));
         }
     }
 }

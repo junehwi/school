@@ -2,36 +2,36 @@
 
 namespace School
 {
-    public class Evaluator : Surface.IExprVisitor<int>
+    public class Evaluator : Core.IExprVisitor<int>
     {
         public Evaluator() { }
 
-        public int Evaluate(Surface.Expr expr)
+        public int Evaluate(Core.Expr expr)
         {
             return expr.Accept(this);
         }
 
-        int Surface.IExprVisitor<int>.Visit(Surface.Number number)
+        int Core.IExprVisitor<int>.Visit(Core.Number number)
         {
             return number.Value;
         }
 
-        int Surface.IExprVisitor<int>.Visit(Surface.Add add)
+        int Core.IExprVisitor<int>.Visit(Core.Add add)
         {
             return add.Left.Accept(this) + add.Right.Accept(this);
         }
 
-        int Surface.IExprVisitor<int>.Visit(Surface.Sub sub)
+        int Core.IExprVisitor<int>.Visit(Core.Sub sub)
         {
             return sub.Left.Accept(this) - sub.Right.Accept(this);
         }
 
-        int Surface.IExprVisitor<int>.Visit(Surface.Mul mul)
+        int Core.IExprVisitor<int>.Visit(Core.Mul mul)
         {
             return mul.Left.Accept(this) * mul.Right.Accept(this);
         }
 
-        int Surface.IExprVisitor<int>.Visit(Surface.Div div)
+        int Core.IExprVisitor<int>.Visit(Core.Div div)
         {
             return div.Left.Accept(this) / div.Right.Accept(this);
         }

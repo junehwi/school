@@ -3,7 +3,7 @@ using System.Text;
 
 namespace School
 {
-    public class CSharpCodeGenerator : Surface.IExprVisitor<object>
+    public class CSharpCodeGenerator : Core.IExprVisitor<object>
     {
         private StringBuilder builder = new StringBuilder();
 
@@ -23,7 +23,7 @@ namespace School
 
         public CSharpCodeGenerator() { }
 
-        public string Compile(Surface.Expr expr)
+        public string Compile(Core.Expr expr)
         {
 
             expr.Accept(this);
@@ -31,13 +31,13 @@ namespace School
             return prolog + code + epilog;
         }
 
-        object Surface.IExprVisitor<object>.Visit(Surface.Number number)
+        object Core.IExprVisitor<object>.Visit(Core.Number number)
         {
             builder.Append(number.Value.ToString());
             return null;
         }
 
-        private void CompileBinaryOp(Surface.BinaryOperator binOp, string opCode)
+        private void CompileBinaryOp(Core.BinaryOperator binOp, string opCode)
         {
             builder.Append("(");
             binOp.Left.Accept(this);
@@ -46,25 +46,25 @@ namespace School
             builder.Append(")");
         }
 
-        object Surface.IExprVisitor<object>.Visit(Surface.Add add)
+        object Core.IExprVisitor<object>.Visit(Core.Add add)
         {
             CompileBinaryOp(add, "+");
             return null;
         }
 
-        object Surface.IExprVisitor<object>.Visit(Surface.Sub sub)
+        object Core.IExprVisitor<object>.Visit(Core.Sub sub)
         {
             CompileBinaryOp(sub, "-");
             return null;
         }
 
-        object Surface.IExprVisitor<object>.Visit(Surface.Mul mul)
+        object Core.IExprVisitor<object>.Visit(Core.Mul mul)
         {
             CompileBinaryOp(mul, "*");
             return null;
         }
 
-        object Surface.IExprVisitor<object>.Visit(Surface.Div div)
+        object Core.IExprVisitor<object>.Visit(Core.Div div)
         {
             CompileBinaryOp(div, "/");
             return null;

@@ -46,9 +46,12 @@
     <Compile Include="CSharpCodeGenerator.cs" />
     <Compile Include="PseudoByteCodeGenerator.cs" />
     <Compile Include="Surface\Expr.cs" />
+    <Compile Include="Core\Expr.cs" />
+    <Compile Include="Desugarer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Surface\" />
+    <Folder Include="Core\" />
   </ItemGroup>
 </Project>
