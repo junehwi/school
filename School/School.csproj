@@ -35,6 +35,17 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Lexer.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="SchoolLexer.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="SchoolParser.cs" />
+    <Compile Include="Expr.cs" />
+    <Compile Include="Printer.cs" />
+    <Compile Include="Evaluator.cs" />
+    <Compile Include="RPNConverter.cs" />
+    <Compile Include="CSharpCodeGenerator.cs" />
+    <Compile Include="PseudoByteCodeGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
