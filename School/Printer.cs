@@ -2,22 +2,22 @@
 
 namespace School
 {
-    public class Printer : IExprVisitor<object>
+    public class Printer : Surface.IExprVisitor<object>
     {
         public Printer() { }
 
-        public void Print(Expr expr)
+        public void Print(Surface.Expr expr)
         {
             expr.Accept(this);
         }
 
-        object IExprVisitor<object>.Visit(Number number)
+        object Surface.IExprVisitor<object>.Visit(Surface.Number number)
         {
             Console.Write(number.Value);
             return null;
         }
 
-        private void PrintBinaryOperator(BinaryOperator binOp, char opChar)
+        private void PrintBinaryOperator(Surface.BinaryOperator binOp, char opChar)
         {
             Console.Write("(");
             Print(binOp.Left);
@@ -26,25 +26,25 @@ namespace School
             Console.Write(")");
         }
 
-        object IExprVisitor<object>.Visit(Add add)
+        object Surface.IExprVisitor<object>.Visit(Surface.Add add)
         {
             PrintBinaryOperator(add, '+');
             return null;
         }
 
-        object IExprVisitor<object>.Visit(Sub sub)
+        object Surface.IExprVisitor<object>.Visit(Surface.Sub sub)
         {
             PrintBinaryOperator(sub, '-');
             return null;
         }
 
-        object IExprVisitor<object>.Visit(Mul mul)
+        object Surface.IExprVisitor<object>.Visit(Surface.Mul mul)
         {
             PrintBinaryOperator(mul, '*');
             return null;
         }
 
-        object IExprVisitor<object>.Visit(Div div)
+        object Surface.IExprVisitor<object>.Visit(Surface.Div div)
         {
             PrintBinaryOperator(div, '/');
             return null;

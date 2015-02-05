@@ -9,14 +9,14 @@ namespace School
     {
         public SchoolParser(Lexer input) : base(input) { }
 
-        public Expr Parse()
+        public Surface.Expr Parse()
         {
             return Expr();
         }
 
-        private Expr Expr()
+        private Surface.Expr Expr()
         {
-            Expr left = Term();
+            Surface.Expr left = Term();
 
             int type = lookahead.Type;
             switch (type)
@@ -29,16 +29,16 @@ namespace School
                     return left;
             }
 
-            Expr right = Expr();
+            Surface.Expr right = Expr();
 
-            Expr expr;
+            Surface.Expr expr;
             switch (type)
             {
                 case SchoolLexer.ADD:
-                    expr = new Add(left, right);
+                    expr = new Surface.Add(left, right);
                     break;
                 case SchoolLexer.SUB:
-                    expr = new Sub(left, right);
+                    expr = new Surface.Sub(left, right);
                     break;
                 default:
                     throw new ParserException("unreachable code");
@@ -46,9 +46,9 @@ namespace School
             return expr;
         }
 
-        private Expr Term()
+        private Surface.Expr Term()
         {
-            Expr left = Factor();
+            Surface.Expr left = Factor();
 
             int type = lookahead.Type;
             switch (type)
@@ -61,16 +61,16 @@ namespace School
                     return left;
             }
 
-            Expr right = Term();
+            Surface.Expr right = Term();
 
-            Expr expr;
+            Surface.Expr expr;
             switch (type)
             {
                 case SchoolLexer.MUL:
-                    expr = new Mul(left, right);
+                    expr = new Surface.Mul(left, right);
                     break;
                 case SchoolLexer.DIV:
-                    expr = new Div(left, right);
+                    expr = new Surface.Div(left, right);
                     break;
                 default:
                     throw new ParserException("unreachable code");
@@ -78,9 +78,9 @@ namespace School
             return expr;
         }
 
-        private Expr Factor()
+        private Surface.Expr Factor()
         {
-            Expr expr;
+            Surface.Expr expr;
 
             switch (lookahead.Type)
             {
@@ -91,7 +91,7 @@ namespace School
                     break;
                 case SchoolLexer.NUM:
                     string numberText = lookahead.Text;
-                    expr = new Number(Int32.Parse(numberText));
+                    expr = new Surface.Number(Int32.Parse(numberText));
                     Consume();
                     break;
                 default:

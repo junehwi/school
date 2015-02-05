@@ -11,7 +11,7 @@ namespace School
 
             var lexer = new SchoolLexer(input);
             var parser = new SchoolParser(lexer);
-            Expr expr = parser.Parse();
+            Surface.Expr expr = parser.Parse();
 
             Console.WriteLine("Print:");
             var printer = new Printer();

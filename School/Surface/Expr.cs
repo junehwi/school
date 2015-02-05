@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace School
+namespace School.Surface
 {
     public interface IExprVisitor<R>
     {

@@ -40,12 +40,15 @@
     <Compile Include="SchoolLexer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="SchoolParser.cs" />
-    <Compile Include="Expr.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Evaluator.cs" />
     <Compile Include="RPNConverter.cs" />
     <Compile Include="CSharpCodeGenerator.cs" />
     <Compile Include="PseudoByteCodeGenerator.cs" />
+    <Compile Include="Surface\Expr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Surface\" />
+  </ItemGroup>
 </Project>
